@@ -41,32 +41,43 @@ const HomeNavigator = createStackNavigator({
       headerTintColor: "#fff"  
     })
 });
+
 const ContactNavigator = createStackNavigator({
-    Home: { screen: Contact }
-  }, {
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: {
-          backgroundColor: "#512DA8"
-      },
-      headerTitleStyle: {
-          color: "#fff"            
-      },
-      headerTintColor: "#fff"  
-    })
-});
+        Cotact: { screen: Contact }
+        
+        
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#512DA8"
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: "#fff"            
+            }
+        }
+    }
+);
+
 const AboutNavigator = createStackNavigator({
-    Home: { screen: About }
-  }, {
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: {
-          backgroundColor: "#512DA8"
-      },
-      headerTitleStyle: {
-          color: "#fff"            
-      },
-      headerTintColor: "#fff"  
-    })
-});
+        About: { screen: About }
+        
+        
+    },
+    {
+        
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#512DA8"
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: "#fff"            
+            }
+        }
+    }
+);
 const MainNavigator = createDrawerNavigator({
     Home: 
       { screen: HomeNavigator,
@@ -94,7 +105,7 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
           title: 'Contact Us',
           drawerLabel: 'Contact Us'
-        }, 
+        }
       }
 
 }, {

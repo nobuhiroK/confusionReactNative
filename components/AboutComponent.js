@@ -44,7 +44,6 @@ class About extends Component {
         
 
 
-
         const renderLeaderItem = ({item, index}) => {
 
             return (
