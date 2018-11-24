@@ -4,6 +4,7 @@ import { ListItem, Tile } from 'react-native-elements';
 //import { DISHES } from '../shared/dishes';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
@@ -37,13 +38,28 @@ class Menu extends Component {
         
          console.log(navigate);
 
-        return (
-                <FlatList 
-                    data={this.props.dishes.dishes}
-                    renderItem={renderMenuItem}
-                    keyExtractor={item => item.id.toString()}
-                    />
-        )
+                if (this.props.dishes.isLoading) {
+                    return(
+                        <Loading />
+                    );
+                }
+                else if (this.props.dishes.errMess) {
+                    return(
+                        <View>            
+                            <Text>{props.dishes.errMess}</Text>
+                        </View>            
+                    );
+                }
+                else {
+                    return (
+                        <FlatList 
+                            data={this.props.dishes.dishes}
+                            renderItem={renderMenuItem}
+                            keyExtractor={item => item.id.toString()}
+                            />
+                    );
+                }
+        
     }
 }
 
