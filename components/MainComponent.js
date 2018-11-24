@@ -84,7 +84,7 @@ const ContactNavigator = createStackNavigator({
             headerTitleStyle: {
                 color: "#fff"            
             },
-            headerLeft: <Icon name="address-card" size={24} 
+            headerLeft: <Icon name="menu" size={24} 
               color= 'white'
               onPress={ () => navigation.toggleDrawer() } />
         })
@@ -105,7 +105,7 @@ const AboutNavigator = createStackNavigator({
             headerTitleStyle: {
                 color: "#fff"            
             },
-            headerLeft: <Icon name="info-circle" size={24} 
+            headerLeft: <Icon name="menu" size={24} 
               color= 'white'
               onPress={ () => navigation.toggleDrawer() } />
         })
@@ -167,7 +167,7 @@ const MainNavigator = createDrawerNavigator({
           drawerLabel: 'About Us',
           drawerIcon: ({ tintColor, focused }) => (
             <Icon
-              name='home'
+              name='info-circle'
               type='font-awesome'            
               size={24}
               color={tintColor}
