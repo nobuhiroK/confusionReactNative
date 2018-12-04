@@ -145,8 +145,8 @@ const FavoritesNavigator = createStackNavigator({
         onPress={ () => navigation.toggleDrawer() } />    
     })
   })
-const LoginNavigator = createStackNavigator({
-      Login: { screen: Login }
+  const LoginNavigator = createStackNavigator({
+      Login: Login
     }, {
     navigationOptions: ({ navigation }) => ({
       headerStyle: {
@@ -155,6 +155,7 @@ const LoginNavigator = createStackNavigator({
       headerTitleStyle: {
           color: "#fff"            
       },
+      title: 'Login',
       headerTintColor: "#fff",
       headerLeft: <Icon name="menu" size={24}
         iconStyle={{ color: 'white' }} 
