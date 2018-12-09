@@ -3,7 +3,7 @@ import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal, Aler
 import { Card } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable';
-import { Permissions, Notifications } from 'expo';
+import { Permissions, Notifications, Asset, Calendar } from 'expo';
 
 class Reservation extends Component {
 
@@ -52,8 +52,43 @@ class Reservation extends Component {
                 vibrate: true,
                 color: '#512DA8'
             }
-        });
+        })
     }
+
+   obtainCalendarPermission = async () => {
+    try {
+      const calendarPermission = await Permissions.askAsync(Permissions.CALENDAR);
+      if (calendarPermission.status === "granted") {
+        return calendarPermission;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  addReservationToCalendar = async (date) => {
+    console.log('adding event to calendar')
+    await this.obtainCalendarPermission();
+    startDate = new Date(Date.parse(date));
+    endDate = new Date(Date.parse(date) + 2 * 60 * 60 * 1000);
+    details = {
+        title: "Con Fusion Table Reservation",
+        startDate: startDate,
+        endDate: endDate,
+        timeZone: "Asia/Hong_Kong",
+        location: "121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong"
+    }
+    try {
+      let id =  await Calendar.createEventAsync(Calendar.DEFAULT, details);
+      console.log("added event to calendar");
+      console.log(id);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+                
+            
 
     handleReservation() {
         console.log(JSON.stringify(this.state));
@@ -71,7 +106,13 @@ class Reservation extends Component {
                                 },
                                 {
                                     text: 'OK',
-                                    onPress: () => this.presentLocalNotification(this.state.date)
+                                    onPress: () => {
+                                        this.addReservationToCalendar(this.state.date)
+                                        this.presentLocalNotification(this.state.date)
+
+                                    
+                                    }
+
                                 }
                             ],
                             { cancelable: false }
